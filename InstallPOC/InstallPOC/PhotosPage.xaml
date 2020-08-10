@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:vm="clr-namespace:InstallPOC.ViewModels;assembly=InstallPOC"
+             xmlns:controls="clr-namespace:InstallPOC.Controls;assembly=InstallPOC"
+             x:Class="InstallPOC.PhotosPage"
+             Visual="Material">
+	<ContentPage.Resources>
+		<DataTemplate x:Key="PhotoTemplate">
+			<Grid RowDefinitions="*"
+			      ColumnDefinitions="*">
+				<Frame Padding="0"
+				       IsClippedToBounds="False"
+				       HeightRequest="200"
+				       WidthRequest="200">
+					<Image Source="{Binding PhotoPath}"
+				       Aspect="AspectFill"
+				       />
+				</Frame>
+
+			</Grid>
+		</DataTemplate>
+		<!--<DataTemplate x:Key="EmptyTemplate">
+		<StackLayout>
+				<Button Text="&#xf055;"
+						HeightRequest="200"
+						WidthRequest="200"
+						 BackgroundColor="LightGray"
+						FontSize="30"
+			             Command="{Binding Path=TakePhotoCommand, Source={RelativeSource AncestorType={x:Type vm:PhotoCollectionViewModel}}}"
+			             FontFamily="{StaticResource FaSolidFont}">
+				</Button>
+		</StackLayout>
+		</DataTemplate>
+		<controls:PhotoTemplateSelector x:Key="PhotoTemplateSelector" 
+		                                EmptyTemplate="{StaticResource EmptyTemplate}"
+		                                PhotoTemplate="{StaticResource PhotoTemplate}"/>-->
+	</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Command="{Binding TakePhotoCommand}" Text="Add Photo"/>
+	</ContentPage.ToolbarItems>
+	<CollectionView ItemsSource="{Binding Photos}"
+	                ItemTemplate="{StaticResource PhotoTemplate}">
+		<CollectionView.ItemsLayout>
+			<GridItemsLayout HorizontalItemSpacing="20"
+			                 VerticalItemSpacing="20"
+							 Orientation="Vertical"
+			                 Span="3"/>
+		</CollectionView.ItemsLayout>
+	</CollectionView>
+</ContentPage>

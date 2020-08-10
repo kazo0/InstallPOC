@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstallPOC.App">
+    <Application.Resources>
+	    <OnPlatform x:Key="FaSolidFont"
+	                x:TypeArguments="x:String">
+		    <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+		    <On Platform="Android" Value="FontAwesome5FreeSolid.otf#Regular" />
+	    </OnPlatform>
+
+	    <OnPlatform x:Key="FaRegularFont"
+	                x:TypeArguments="x:String">
+		    <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+			<On Platform="Android" Value="FontAwesome5FreeRegular.otf#Regular" />
+	    </OnPlatform>
+
+	    <OnPlatform x:Key="FaBrandsFont"
+	                x:TypeArguments="x:String">
+		    <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+			<On Platform="Android" Value="FontAwesome5FreeBrands.otf#Regular" />
+	    </OnPlatform>
+
+	    <FontImage x:Key="ChevronRight"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf054;" Size="22" Color="DarkGray" />
+
+	    <FontImage x:Key="ChevronDown"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf078;" Size="22" Color="DarkGray" />
+
+	    <FontImage x:Key="AddIcon"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf055;" Size="22" Color="White" />
+
+	    <FontImage x:Key="LoadingIcon"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf110;" Size="22" Color="White" />
+
+	    <FontImage x:Key="ErrorIcon"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf06a;" Size="22" Color="White" />
+	</Application.Resources>
+</Application>

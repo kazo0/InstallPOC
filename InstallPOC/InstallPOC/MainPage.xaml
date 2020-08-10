@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:InstallPOC.Controls;assembly=InstallPOC"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:vm="clr-namespace:InstallPOC.ViewModels;assembly=InstallPOC"
+             x:Class="InstallPOC.MainPage"
+             Visual="Material">
+
+	<Grid RowDefinitions="Auto, *">
+		<Frame>
+		<Grid ColumnDefinitions="Auto, Auto"
+		      RowDefinitions="Auto, Auto, Auto">
+			<Label Text="IGS Customer Number:"
+			       FontAttributes="Bold"/>
+			<Label Grid.Column="1"
+			       Text="123ABC"/>
+			<Label Grid.Row="1"
+			       FontAttributes="Bold"
+			       Text="Customer Name:"/>
+			<Label Grid.Row="1" Grid.Column="1"
+			       Text="Steve Bilogan"/>
+			<Label Grid.Row="2"
+			       Text="Address:"
+			       FontAttributes="Bold"/>
+			<Label Grid.Row="2" Grid.Column="1"
+			       Text="123 Fake St., Columbus, OH, 43201"/>
+		</Grid>
+		</Frame>
+		<CollectionView ItemsSource="{Binding PhotoCollections}"
+		                Grid.Row="1">
+		<CollectionView.ItemsLayout>
+			<LinearItemsLayout Orientation="Vertical"
+			                   ItemSpacing="10"></LinearItemsLayout>
+		</CollectionView.ItemsLayout>
+		<CollectionView.ItemTemplate>
+			<DataTemplate>
+				<Frame>
+					<Frame.GestureRecognizers>
+						<TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+					</Frame.GestureRecognizers>
+					<Grid>
+						<Label Text="{Binding }"
+						       FontAttributes="Bold"
+						       FontSize="Medium" />
+						<Image Source="{StaticResource ChevronRight}"
+						       HorizontalOptions="End"
+						       VerticalOptions="Start">
+						</Image>
+					</Grid>
+				</Frame>
+			</DataTemplate>
+		</CollectionView.ItemTemplate>
+	</CollectionView>
+	</Grid>
+</ContentPage>
