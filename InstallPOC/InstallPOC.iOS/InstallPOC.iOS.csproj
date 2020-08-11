@@ -121,9 +121,7 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\solar_roof.png">
-      <Visible>false</Visible>
-    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\kissclipart-house-with-solar-panel-icon-clipart-solar-power-so-405ec65d883f7e02.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -146,7 +144,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\InstallPOC\InstallPOC.csproj">
-      <Project>{E0194329-1914-436F-8A3A-FF5682319FD3}</Project>
+      <Project>{2401C19A-9FBF-4059-9183-58B22B31E462}</Project>
       <Name>InstallPOC</Name>
     </ProjectReference>
   </ItemGroup>
