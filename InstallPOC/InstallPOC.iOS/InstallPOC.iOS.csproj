@@ -121,7 +121,7 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\login-bg.png">
+    <ImageAsset Include="Assets.xcassets\LaunchImage.imageset\solar_roof.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
