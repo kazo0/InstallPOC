@@ -8,10 +8,13 @@
              x:Class="InstallPOC.PhotosPage"
              Visual="Material">
 	<ContentPage.Resources>
+		
 		<DataTemplate x:Key="PhotoTemplate">
-			<Grid RowDefinitions="*"
+			<Grid RowDefinitions="Auto, *"
 			      ColumnDefinitions="*">
+
 				<Frame Padding="0"
+				       Grid.RowSpan="2"
 				       IsClippedToBounds="False"
 				       HeightRequest="200"
 				       WidthRequest="200">
@@ -19,7 +22,11 @@
 				       Aspect="AspectFill"
 				       />
 				</Frame>
-
+				<ImageButton Padding="10"
+				             HorizontalOptions="EndAndExpand"
+				             VerticalOptions="Start"
+							 Clicked="ImageButton_OnClicked"
+				             Source="{StaticResource DeleteIcon}"/>
 			</Grid>
 		</DataTemplate>
 		<!--<DataTemplate x:Key="EmptyTemplate">
@@ -49,5 +56,17 @@
 							 Orientation="Vertical"
 			                 Span="3"/>
 		</CollectionView.ItemsLayout>
+		<CollectionView.EmptyView>
+			<Grid RowDefinitions="*, *">
+				<Label Text="&#xf1c5;"
+				       FontFamily="{StaticResource FaRegularFont}"
+				       HorizontalOptions="Center"
+					   VerticalOptions="End"
+				       FontSize="40"/>
+				<Label Grid.Row="1"
+					Text="No photos to display"
+				       HorizontalOptions="Center"/>
+			</Grid>
+		</CollectionView.EmptyView>
 	</CollectionView>
 </ContentPage>

@@ -19,6 +19,7 @@ namespace InstallPOC.ViewModels
 		public ObservableRangeCollection<Photo> Photos { get; set; }
 
 		public ICommand TakePhotoCommand => new AsyncCommand(TakePhoto);
+		public ICommand DeletePhotoCommand => new AsyncCommand<Photo>(DeletePhoto);
 
 		public PhotoCollectionViewModel()
 		{
@@ -41,5 +42,10 @@ namespace InstallPOC.ViewModels
 
 			Photos.Add(new Photo() { PhotoPath = file.Path });
         }
+
+		private async Task DeletePhoto(Photo photo)
+		{
+			Photos.Remove(photo);
+		}
 	}
 }

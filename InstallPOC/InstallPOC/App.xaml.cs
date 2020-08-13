@@ -9,8 +9,8 @@ namespace InstallPOC
 		public App()
 		{
 			InitializeComponent();
-			Device.SetFlags(new string[] { "Expander_Experimental", "CarouselView_Experimental" });
-			MainPage = new NavigationPage(new MainPage());
+			Device.SetFlags(new string[] { "Expander_Experimental"});
+			MainPage = new CameraControlPage();
 		}
 
 		protected override void OnStart()

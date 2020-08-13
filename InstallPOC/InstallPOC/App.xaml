@@ -40,5 +40,8 @@
 	    <FontImage x:Key="ErrorIcon"
 	               FontFamily="{StaticResource FaSolidFont}"
 	               Glyph="&#xf06a;" Size="22" Color="White" />
+	    <FontImage x:Key="DeleteIcon"
+	               FontFamily="{StaticResource FaSolidFont}"
+	               Glyph="&#xf057;" Size="22" Color="White" />
 	</Application.Resources>
 </Application>

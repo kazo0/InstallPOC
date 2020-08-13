@@ -16,6 +16,14 @@ namespace InstallPOC.ViewModels
 			"Roof",
 			"Panels",
 			"Racks",
+			"Inverters",
+			"Panels on Racks",
+			"Misc",
+			"Misc",
+			"Misc",
+			"Misc",
+			"Misc",
+			"Misc",
 		};
 	}
 }

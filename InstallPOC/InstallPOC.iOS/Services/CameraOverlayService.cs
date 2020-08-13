@@ -18,14 +18,17 @@ namespace InstallPOC.iOS.Services
 		{
 			var label = new UILabel()
 			{
-				Text = "TESTING",
+				Text = "This is a test of the camera overlay feature for iOS only. This text should show at the top of the camera frame regardless of orientation",
 				TextColor = UIColor.Red,
 				TextAlignment = UITextAlignment.Center,
+				Lines = 0,
+				LineBreakMode = UILineBreakMode.WordWrap,
+				AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin,
+				Frame = new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, 0),
 			};
-			label.Lines = 0;
 			label.SizeToFit();
+			
 			var labelFrame = label.Frame;
-			label.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin;
 
 			label.Frame = new CGRect(labelFrame.Location, new CGSize(UIScreen.MainScreen.Bounds.Width, labelFrame.Height));
 

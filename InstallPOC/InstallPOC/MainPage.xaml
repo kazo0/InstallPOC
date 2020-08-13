@@ -6,33 +6,34 @@
              xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:vm="clr-namespace:InstallPOC.ViewModels;assembly=InstallPOC"
              x:Class="InstallPOC.MainPage"
+			 Title="Overview"
              Visual="Material">
 
 	<Grid RowDefinitions="Auto, *">
-		<Frame>
-		<Grid ColumnDefinitions="Auto, Auto"
-		      RowDefinitions="Auto, Auto, Auto">
-			<Label Text="IGS Customer Number:"
-			       FontAttributes="Bold"/>
-			<Label Grid.Column="1"
-			       Text="123ABC"/>
-			<Label Grid.Row="1"
-			       FontAttributes="Bold"
-			       Text="Customer Name:"/>
-			<Label Grid.Row="1" Grid.Column="1"
-			       Text="Steve Bilogan"/>
-			<Label Grid.Row="2"
-			       Text="Address:"
-			       FontAttributes="Bold"/>
-			<Label Grid.Row="2" Grid.Column="1"
-			       Text="123 Fake St., Columbus, OH, 43201"/>
-		</Grid>
+		<Frame Margin="0, 20">
+			<Grid ColumnDefinitions="Auto, Auto"
+			      RowDefinitions="Auto, Auto, Auto">
+				<Label Text="IGS Customer Number:"
+				       FontAttributes="Bold"/>
+				<Label Grid.Column="1"
+				       Text="123ABC"/>
+				<Label Grid.Row="1"
+				       FontAttributes="Bold"
+				       Text="Customer Name:"/>
+				<Label Grid.Row="1" Grid.Column="1"
+				       Text="Steve Bilogan"/>
+				<Label Grid.Row="2"
+				       Text="Address:"
+				       FontAttributes="Bold"/>
+				<Label Grid.Row="2" Grid.Column="1"
+				       Text="123 Fake St., Columbus, OH, 43201"/>
+			</Grid>
 		</Frame>
 		<CollectionView ItemsSource="{Binding PhotoCollections}"
 		                Grid.Row="1">
 		<CollectionView.ItemsLayout>
 			<LinearItemsLayout Orientation="Vertical"
-			                   ItemSpacing="10"></LinearItemsLayout>
+			                   ItemSpacing="20"></LinearItemsLayout>
 		</CollectionView.ItemsLayout>
 		<CollectionView.ItemTemplate>
 			<DataTemplate>
