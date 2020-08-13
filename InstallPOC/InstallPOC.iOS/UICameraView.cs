@@ -61,10 +61,10 @@ namespace InstallPOC.iOS
 					var point = previewLayer.CaptureDevicePointOfInterestForPoint(location);
 					if (CaptureDevice.LockForConfiguration(out var error))
 					{
-						
-							CaptureDevice.FocusPointOfInterest = point;
-							CaptureDevice.FocusMode = AVCaptureFocusMode.ContinuousAutoFocus;
-						
+
+						CaptureDevice.FocusPointOfInterest = point;
+						CaptureDevice.FocusMode = AVCaptureFocusMode.ContinuousAutoFocus;
+
 					}
 
 					CaptureDevice.UnlockForConfiguration();
@@ -162,7 +162,7 @@ namespace InstallPOC.iOS
 
 			var input = new AVCaptureDeviceInput(CaptureDevice, out var error);
 			var dictionary = new NSMutableDictionary();
-			dictionary[AVVideo.CodecKey] = new NSNumber((int) AVVideoCodec.JPEG);
+			dictionary[AVVideo.CodecKey] = new NSNumber((int)AVVideoCodec.JPEG);
 			stillImageOutput = new AVCaptureStillImageOutput
 			{
 				OutputSettings = new NSDictionary()
@@ -193,7 +193,7 @@ namespace InstallPOC.iOS
 			};
 			_controlsContainer = new UIView()
 			{
-				TranslatesAutoresizingMaskIntoConstraints = false,
+				AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
 			};
 			_toggleFlashButton = new UIButton()
 			{
@@ -208,14 +208,15 @@ namespace InstallPOC.iOS
 			};
 			_takePhotoButton.SetBackgroundImage(UIImage.FromFile("TakePhotoButton.png"), UIControlState.Normal);
 
-			_takePhotoButton.TouchUpInside += (sender, e) => {
+			_takePhotoButton.TouchUpInside += (sender, e) =>
+			{
 				CapturePhoto();
 			};
 
 
 			Layer.AddSublayer(previewLayer);
 			AddSubview(_controlsContainer);
-			_controlsContainer.AddSubview(_takePhotoButton);
+			_controlsContainer.AddSubviews(_takePhotoButton, _toggleFlashButton);
 
 			NSNotificationCenter.DefaultCenter.AddObserver(
 				UIDevice.OrientationDidChangeNotification,
@@ -224,40 +225,72 @@ namespace InstallPOC.iOS
 
 		private void SetupConstraints()
 		{
-			_sharedConstraints = new List<NSLayoutConstraint>(new []
-			{
-				_controlsContainer.LeadingAnchor.ConstraintEqualTo(this.LeadingAnchor),
-				_controlsContainer.TrailingAnchor.ConstraintEqualTo(this.TrailingAnchor),
-				_controlsContainer.TopAnchor.ConstraintEqualTo(this.TopAnchor),
-				_controlsContainer.BottomAnchor.ConstraintEqualTo(this.BottomAnchor),
+			//_sharedConstraints = new List<NSLayoutConstraint>(new[]
+			//{
+			//	_controlsContainer.LeadingAnchor.ConstraintEqualTo(this.LeadingAnchor),
+			//	_controlsContainer.TrailingAnchor.ConstraintEqualTo(this.TrailingAnchor),
+			//	_controlsContainer.TopAnchor.ConstraintEqualTo(this.TopAnchor),
+			//	_controlsContainer.BottomAnchor.ConstraintEqualTo(this.BottomAnchor),
 
-				NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70), 
-				NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 1, 70), 
-			});
+			//	NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70),
+			//	NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 1, 70),
+			//	NSLayoutConstraint.Create(_toggleFlashButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 40),
+			//	NSLayoutConstraint.Create(_toggleFlashButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 1, 40),
+			//});
 
-			_portraitConstraints = new List<NSLayoutConstraint>(new []
+			//_portraitConstraints = new List<NSLayoutConstraint>(new[]
+			//{
+			//	_takePhotoButton.TrailingAnchor.ConstraintEqualTo(_controlsContainer.TrailingAnchor, -25f),
+			//	_takePhotoButton.CenterYAnchor.ConstraintEqualTo(_controlsContainer.CenterYAnchor),
+			//	_toggleFlashButton.BottomAnchor.ConstraintEqualTo(_takePhotoButton.TopAnchor, -25f),
+			//	_toggleFlashButton.CenterXAnchor.ConstraintEqualTo(_takePhotoButton.CenterXAnchor),
+			//}); ;
+
+			//_portraitUpsideDownConstraints = new List<NSLayoutConstraint>(new[]
+			//{
+			//	_takePhotoButton.LeadingAnchor.ConstraintEqualTo(_controlsContainer.LeadingAnchor, 25f),
+			//	_takePhotoButton.CenterYAnchor.ConstraintEqualTo(_controlsContainer.CenterYAnchor),
+			//	_toggleFlashButton.TopAnchor.ConstraintEqualTo(_takePhotoButton.BottomAnchor, 25f),
+			//	_toggleFlashButton.CenterXAnchor.ConstraintEqualTo(_takePhotoButton.CenterXAnchor),
+			//});
+
+			//_landscapeRightConstraints = new List<NSLayoutConstraint>(new[]
+			//{
+			//	_takePhotoButton.TopAnchor.ConstraintEqualTo(_controlsContainer.TopAnchor, 25f),
+			//	_takePhotoButton.CenterXAnchor.ConstraintEqualTo(_controlsContainer.CenterXAnchor),
+			//	_toggleFlashButton.TrailingAnchor.ConstraintEqualTo(_takePhotoButton.LeadingAnchor, -25f),
+			//	_toggleFlashButton.CenterYAnchor.ConstraintEqualTo(_takePhotoButton.CenterYAnchor),
+			//});
+
+			//_landscapeLeftConstraints = new List<NSLayoutConstraint>(new[]
+			//{
+			//	_takePhotoButton.BottomAnchor.ConstraintEqualTo(_controlsContainer.BottomAnchor, -25f),
+			//	_takePhotoButton.CenterXAnchor.ConstraintEqualTo(_controlsContainer.CenterXAnchor),
+			//	_toggleFlashButton.LeadingAnchor.ConstraintEqualTo(_takePhotoButton.TrailingAnchor, 25f),
+			//	_toggleFlashButton.CenterYAnchor.ConstraintEqualTo(_takePhotoButton.CenterYAnchor),
+			//});
+
+			_sharedConstraints = new List<NSLayoutConstraint>(new[]
 			{
+
 				_takePhotoButton.TrailingAnchor.ConstraintEqualTo(_controlsContainer.TrailingAnchor, -25f),
-				_takePhotoButton.CenterYAnchor.ConstraintEqualTo(_controlsContainer.CenterYAnchor)
+				_takePhotoButton.CenterYAnchor.ConstraintEqualTo(_controlsContainer.CenterYAnchor),
+				_toggleFlashButton.BottomAnchor.ConstraintEqualTo(_takePhotoButton.TopAnchor, -25f),
+				_toggleFlashButton.CenterXAnchor.ConstraintEqualTo(_takePhotoButton.CenterXAnchor),
+
+				NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 70),
+				NSLayoutConstraint.Create(_takePhotoButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 1, 70),
+				NSLayoutConstraint.Create(_toggleFlashButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, 1, 40),
+				NSLayoutConstraint.Create(_toggleFlashButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 1, 40),
 			});
 
-			_portraitUpsideDownConstraints= new List<NSLayoutConstraint>(new[]
-			{
-				_takePhotoButton.LeadingAnchor.ConstraintEqualTo(_controlsContainer.LeadingAnchor, 25f),
-				_takePhotoButton.CenterYAnchor.ConstraintEqualTo(_controlsContainer.CenterYAnchor)
-			});
+			_portraitConstraints = new List<NSLayoutConstraint>();
 
-			_landscapeRightConstraints = new List<NSLayoutConstraint>(new[]
-			{
-				_takePhotoButton.TopAnchor.ConstraintEqualTo(_controlsContainer.TopAnchor, 25f),
-				_takePhotoButton.CenterXAnchor.ConstraintEqualTo(_controlsContainer.CenterXAnchor)
-			});
+			_portraitUpsideDownConstraints = new List<NSLayoutConstraint>();
 
-			_landscapeLeftConstraints = new List<NSLayoutConstraint>(new[]
-			{
-				_takePhotoButton.BottomAnchor.ConstraintEqualTo(_controlsContainer.BottomAnchor, -25f),
-				_takePhotoButton.CenterXAnchor.ConstraintEqualTo(_controlsContainer.CenterXAnchor)
-			});
+			_landscapeRightConstraints = new List<NSLayoutConstraint>();
+
+			_landscapeLeftConstraints = new List<NSLayoutConstraint>();
 		}
 
 		private void OnLayout()
@@ -290,13 +323,14 @@ namespace InstallPOC.iOS
 				_takePhotoButton.Frame = new CGRect(centerButtonX, bottomButtonY, buttonWidth, buttonHeight);
 			}
 
-			
+
 		}
 
 		private void OrientationChanged(NSNotification notification)
 		{
 			UIView.Animate(0.3d, () =>
 			{
+				bool flipped = false;
 				if (!_sharedConstraints.Any(x => x.Active))
 				{
 					NSLayoutConstraint.ActivateConstraints(_sharedConstraints.ToArray());
@@ -305,26 +339,23 @@ namespace InstallPOC.iOS
 				switch (UIDevice.CurrentDevice.Orientation)
 				{
 					case UIDeviceOrientation.LandscapeRight:
+						flipped = true;
 						NSLayoutConstraint.DeactivateConstraints(_portraitConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_portraitUpsideDownConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_landscapeLeftConstraints.ToArray());
 
 						NSLayoutConstraint.ActivateConstraints(_landscapeRightConstraints.ToArray());
+						_controlsContainer.Transform = CGAffineTransform.MakeRotation(new nfloat(-Math.PI / 2));
+
 						break;
 					case UIDeviceOrientation.LandscapeLeft:
+						flipped = true;
 						NSLayoutConstraint.DeactivateConstraints(_portraitConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_portraitUpsideDownConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_landscapeRightConstraints.ToArray());
 
+						_controlsContainer.Transform = CGAffineTransform.MakeRotation(new nfloat(Math.PI / 2));
 						NSLayoutConstraint.ActivateConstraints(_landscapeLeftConstraints.ToArray());
-						break;
-
-					case UIDeviceOrientation.Portrait:
-						NSLayoutConstraint.DeactivateConstraints(_landscapeRightConstraints.ToArray());
-						NSLayoutConstraint.DeactivateConstraints(_portraitUpsideDownConstraints.ToArray());
-						NSLayoutConstraint.DeactivateConstraints(_landscapeLeftConstraints.ToArray());
-
-						NSLayoutConstraint.ActivateConstraints(_portraitConstraints.ToArray());
 						break;
 					case UIDeviceOrientation.PortraitUpsideDown:
 						NSLayoutConstraint.DeactivateConstraints(_portraitConstraints.ToArray());
@@ -332,15 +363,22 @@ namespace InstallPOC.iOS
 						NSLayoutConstraint.DeactivateConstraints(_landscapeLeftConstraints.ToArray());
 
 						NSLayoutConstraint.ActivateConstraints(_portraitUpsideDownConstraints.ToArray());
+						_controlsContainer.Transform = CGAffineTransform.MakeRotation(new nfloat(Math.PI));
+
 						break;
 					default:
+					case UIDeviceOrientation.Portrait:
 						NSLayoutConstraint.DeactivateConstraints(_landscapeRightConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_portraitUpsideDownConstraints.ToArray());
 						NSLayoutConstraint.DeactivateConstraints(_landscapeLeftConstraints.ToArray());
 
 						NSLayoutConstraint.ActivateConstraints(_portraitConstraints.ToArray());
+						_controlsContainer.Transform = CGAffineTransform.MakeRotation(0f);
+
 						break;
 				}
+				_controlsContainer.Frame = Bounds;
+
 
 				LayoutIfNeeded();
 			});
